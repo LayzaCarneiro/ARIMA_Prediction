@@ -1,4 +1,4 @@
-# 🌊 Forecasting Service API (ARIMA + FastAPI)
+# Forecasting Service API (ARIMA + FastAPI)
 
 This project was developed for the NASA Space Apps Challenge 2025, created by the Swift Rockets team as part of the NaviSense solution — a mobile platform designed to support Brazilian coastal fishing communities with clear, accessible long-term marine and weather forecasts.
 
@@ -10,7 +10,7 @@ This project was developed for the NASA Space Apps Challenge 2025, created by th
 
 ## Overview
 
-This repository contains the forecasting backend used in NaviSense — a lightweight FastAPI service that generates long-term environmental predictions using a Python-based ARIMA time-series model.
+This repository contains the forecasting backend used in NaviSense — a **FastAPI** service that generates long-term environmental predictions using a Python-based **ARIMA time-series model**.
 
 Although originally developed for the NaviSense mobile application, the API is modular and can be integrated into any system that requires:
 
