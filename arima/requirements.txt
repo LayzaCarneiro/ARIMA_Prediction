@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pydantic
+requests
+numpy
+pandas
+statsmodels
+scipy
+python-dateutil
