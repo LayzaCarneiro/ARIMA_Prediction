@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from arima import predict_nasa_arima  # sua função ARIMA
+from arima import predict_nasa_arima
 
 app = FastAPI()
 
-# Define o payload que Swift vai enviar
+# Defines the payload that Swift will send
 class ForecastRequest(BaseModel):
     lat: float
     lon: float
@@ -22,4 +22,4 @@ def forecast(request: ForecastRequest):
         "aic": aic
     }
 
-# Para rodar localmente: uvicorn api_arima:app --reload --host 0.0.0.0 --port 8000
+# First create venv, then to run locally: uvicorn api_arima:app --reload --host 0.0.0.0 --port 8000

@@ -16,25 +16,25 @@ def predict_nasa_arima(lat, lon, parameter, forecast_date):
     import warnings
     warnings.filterwarnings('ignore')
 
-    # URL da NASA POWER
+    # NASA POWER URL
     start = '20000101'
     end = '20250101'
     url = f"https://power.larc.nasa.gov/api/temporal/daily/point?parameters={parameter}&community=SB&longitude={lon}&latitude={lat}&start={start}&end={end}&format=JSON"
     data = requests.get(url).json()
 
-    # Extrair série temporal
+    # Extract time series
     values = data['properties']['parameter'][parameter]
     df = pd.DataFrame(list(values.items()), columns=['date', 'value'])
     df['date'] = pd.to_datetime(df['date'], format='%Y%m%d')
     df = df.sort_values('date')
     ts = df['value'].dropna()
-    ts.index = df['date']  # ⚠️ Crucial: define índice temporal
+    ts.index = df['date']  # define a time index (e.g., last 5 years, 10 years, 15 years...)
 
-    # Estacionariedade
+    # parking space 
     result = adfuller(ts)
     d_range = [1] if result[1] > 0.05 else [0]
 
-    # Busca ARIMA
+    # ARIMA search
     p = range(0, 3)
     q = range(0, 3)
     best_aic = np.inf
@@ -52,12 +52,12 @@ def predict_nasa_arima(lat, lon, parameter, forecast_date):
         except:
             continue
 
-    # Previsão
+    # Prediction
     last_date = ts.index[-1]
     forecast_date_dt = pd.to_datetime(forecast_date)
     forecast_days = (forecast_date_dt - last_date).days
     if forecast_days <= 0:
-        raise ValueError("Data de previsão anterior ao último dado disponível")
+        raise ValueError("Forecast date prior to the latest available data")
 
     forecast = best_model.forecast(steps=forecast_days)
     predicted_value = forecast.iloc[-1]
@@ -74,5 +74,5 @@ parameter = 'RH2M'
 forecast_date = '2025-05-01'
 
 value, order, aic = predict_nasa_arima(lat, lon, parameter, forecast_date)
-print(f"Previsão para {forecast_date}: {value:.2f} ({parameter})")
-print(f"Melhor ARIMA order: {order} com AIC {aic:.2f}")
+print(f"Forecast for {forecast_date}: {value:.2f} ({parameter})")
+print(f"Best ARIMA order: {order} with AIC {aic:.2f}")
