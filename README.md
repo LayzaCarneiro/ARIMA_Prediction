@@ -38,6 +38,14 @@ The response includes:
 * **The ARIMA model order** selected during fitting
 * **A statistical score (AIC)** indicating model quality
 
+It gathers data from:
+
+- [NASA POWER](https://power.larc.nasa.gov/docs/services/api/)
+- [Meteomatics](https://www.meteomatics.com/en/meteomatics-and-nasa-space-apps-challenge/)
+- [Marine Weather API](https://open-meteo.com/en/docs/marine-weather-api?utm_source=chatgpt.com)
+
+The backend transforms raw climate data into insights using ARIMA forecasting.
+
 ---
 
 ## API Endpoint
@@ -137,19 +145,6 @@ A view of how the forecasting pipeline works inside the NaviSense ecosystem:
                       ▼
          Predicted Value Returned to Client
 ```
----
-
-# Project Context — What is NaviSense?
-
-NaviSense is a mobile application designed to give Brazilian coastal fishermen simple, accessible long-term marine forecasts — from days to six months ahead.
-It gathers data from:
-
-- [NASA POWER](https://power.larc.nasa.gov/docs/services/api/)
-- [Meteomatics](https://www.meteomatics.com/en/meteomatics-and-nasa-space-apps-challenge/)
-- [Marine Weather API](https://open-meteo.com/en/docs/marine-weather-api?utm_source=chatgpt.com)
-
-The backend transforms raw climate data into insights using ARIMA forecasting.
-
 ---
 
 ## 💥 Contributors — Swift Rockets (NASA Space Apps 2025)
